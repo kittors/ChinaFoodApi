@@ -40,33 +40,36 @@ CREATE TABLE `headPortrait`(
 -- 锁定headPortrait表的写入
 -- LOCK TABLES `headPortrait` WRITE;
 
--------------------------------------------------------------------------
---3.创建菜品表  菜品编号非负数
-DROP TABLE IF EXISTS `food_dishes`;
-CREATE TABLE `food_dishes`(
-  `dishes_id` INT(8) UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '菜品id',
-  `category_name` varchar(30) COMMENT '菜系名',--八大菜系 如川菜 
-  `category_id` INT NOT NULL COMMENT '菜品分类编号 外键',
-  PRIMARY KEY (`dishes_id`),
-  foreign key(`category_id`) references `food_category`(`category_id`)
-)ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
+
 
 -------------------------------------------------------------------------
--- 4.创建菜品分类表
+-- 3.创建菜品分类表
 DROP TABLE IF EXISTS `food_category`;
-
 CREATE TABLE `food_category`(
-    `category_id` INT AUTO_INCREMENT NOT NULL COMMENT '分类列表ID，主键且自增',
+    `category_id` INT NOT NULL AUTO_INCREMENT COMMENT '分类列表ID，主键且自增',
     `pic` varchar(100) NOT NULL COMMENT '分类图标',
     `category_name` varchar(10) NOT NULL,
     PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
-
 LOCK TABLES `food_category` WRITE;
-
 UNLOCK TABLES;
 
 -------------------------------------------------------------------------
+--4.创建菜品表  菜品编号非负数
+DROP TABLE IF EXISTS `dishes`;
+CREATE TABLE `dishes` (
+    `dishes_id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '菜品编号,主键且自增',
+    `dishes_name` varchar(20) NOT NULL COMMENT '菜品名',
+    `dishes_pic` varchar(20) DEFAULT '/images/default.jpg' COMMENT '默认菜品图片地址',
+    `category_name` VARCHAR(20) COMMENT '菜系名字',
+    `category`  INT NOT NULL COMMENT '菜品分类id,外键',
+    `score` INT(5)  COMMENT '菜品评分',
+    PRIMARY KEY (`dishes_id`),
+    foreign key(`category`) references `food_category`(`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
+-------------------------------------------------------------------------
+
+
 -- 5.创建定位地址表
 DROP TABLE IF EXISTS `location`;
 
