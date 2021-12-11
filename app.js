@@ -241,7 +241,7 @@ server.get("/categorySearch", (req, res) => {
   });
 });
 
-//根据 菜品名 搜索菜品信息
+//根据 菜品名 搜索菜品信息  修改了
 server.get("/dishesNameSearch", (req, res) => {
   let dishes_name = "%" + req.query.dishName + "%";
   let sql =
