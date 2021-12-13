@@ -22,21 +22,8 @@ CREATE TABLE `cfood_user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-
 -- 锁定cfood_user表的写入
 -- LOCK TABLES `cfood_user` WRITE;  
-
--------------------------------------------------------------------------
---2.作者表
-DROP TABLE IF EXISTS `author`;
-CREATE TABLE `cfood_user`(
-    `author_id` mediumint(8) NOT NULL AUTO_INCREMENT COMMENT '作者ID,主键且自增',
-     `authorname` varchar(30) NOT NULL COMMENT '作者名',
-     `article_id` mediumint(8) COMMENT '文章id,外键',
-    PRIMARY KEY (`user_id`),
-    foreign key(`article_id`) references `article`(`article_id`)
-)
 
 -------------------------------------------------------------------------
 --3.创建用户头像图库表
@@ -50,8 +37,6 @@ CREATE TABLE `avatar`(
 
 -- 锁定headPortrait表的写入
 -- LOCK TABLES `headPortrait` WRITE;
-
-
 
 -------------------------------------------------------------------------
 -- 4.创建菜品分类表
@@ -156,7 +141,7 @@ DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE `feedback`(
     `id` INT AUTO_INCREMENT NOT NULL COMMENT '反馈ID，主键且自增',
     `details` varchar(200) COMMENT '反馈内容',
-    `user_id` INT UNSIGNED NOT NULL COMMENT '外键,用户ID',
+    `user_id` mediumint(8) NOT NULL COMMENT '外键,用户ID',
     PRIMARY KEY (`id`),
     foreign key(`user_id`) references `cfood_user`(`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
@@ -164,8 +149,17 @@ CREATE TABLE `feedback`(
 LOCK TABLES `feedback` WRITE;
 
 -- INSERT INTO `feedback` (`id`,`details`,`user_id`) VALUES (1,NULL,1);
-
 UNLOCK TABLES;
+
+--2.作者表
+DROP TABLE IF EXISTS `author`;
+CREATE TABLE `author`(
+    `author_id` mediumint(8) NOT NULL AUTO_INCREMENT COMMENT '作者ID,主键且自增',
+    `author_name` varchar(30) NOT NULL COMMENT '作者名',
+    `article_id` INT COMMENT '文章id,外键',
+    PRIMARY KEY (`author_id`),
+    foreign key(`article_id`) references `article`(`article_id`)
+)ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
 -------------------------------------------------------------------------
 -- 12.创建用户关注表
@@ -173,13 +167,16 @@ DROP TABLE IF EXISTS `follow`;
 
 CREATE TABLE `follow`(
     `id` INT AUTO_INCREMENT NOT NULL COMMENT '关注ID，主键且自增',
-    `author_id` INT UNSIGNED NOT NULL COMMENT '外键,作者ID',
-    `user_id` INT UNSIGNED NOT NULL COMMENT '外键,用户ID',
-    PRIMARY KEY (`id`)
+    `author_id`  mediumint(8) NOT NULL COMMENT '外键,作者ID',
+    `user_id` mediumint(8)  NOT NULL COMMENT '外键,用户ID',
+    PRIMARY KEY (`id`),
+    foreign key(`user_id`) references `cfood_user`(`user_id`),
+    foreign key(`author_id`) references `author`(`author_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
 LOCK TABLES `follow` WRITE;
 
-INSERT INTO `follow` (`id`,`author_id`,`user_id`) VALUES (1,1,1),(2,3,1);
+-- INSERT INTO `follow` (`id`,`author_id`,`user_id`) VALUES (1,2,1),(2,3,2);
 
 UNLOCK TABLES;
+
