@@ -62,7 +62,7 @@ server.post('/login', (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
   // SQL语句
-  let sql = 'SELECT u_id,u_name,u_password,u_email FROM cfood_user  WHEREusername=? AND password=MD5(?)';
+  let sql = 'SELECT u_id,u_name,u_password,u_email FROM cfood_user WHERE username=? AND password=MD5(?)';
   pool.query(sql, [username, password], (error, results) => {
     if (error) throw error;
     if (results.length == 0) { //登录失败

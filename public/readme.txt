@@ -1,0 +1,1 @@
+将vue文件 vue build后存放在public文件夹内
