@@ -17,7 +17,7 @@ CREATE TABLE `cfood_user` (
   `email` varchar(50) NOT NULL COMMENT '用户邮箱',
   `nickname` varchar(30) COMMENT '用户昵称',
   `age` INT NOT NULL COMMENT '年龄',
-  `pic` varchar(50) DEFAULT '/images/default.jpg' COMMENT '用户默认头像',
+  `pic` varchar(50) DEFAULT '/images/avatar/0.jpg' COMMENT '用户默认头像',
   `article_number` mediumint(9) NOT NULL DEFAULT '0' COMMENT '发表的文章数量',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
