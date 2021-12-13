@@ -1,13 +1,13 @@
 
--- 创建ChinaFood数据库
+#创建ChinaFood数据库
 SET NAMES UTF8;
 DROP DATABASE IF EXISTS `ChinaFood`;
 CREATE DATABASE IF  NOT EXISTS  `ChinaFood` DEFAULT  CHARACTER SET 'utf8';
 USE `ChinaFood`;
 
 
--------------------------------------------------------------------------
--- 1.创建用户表
+
+#1.创建用户表
 DROP TABLE IF EXISTS `cfood_user`;
 
 CREATE TABLE `cfood_user` (
@@ -22,11 +22,10 @@ CREATE TABLE `cfood_user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
--- 锁定cfood_user表的写入
--- LOCK TABLES `cfood_user` WRITE;  
+#锁定cfood_user表的写入
+# LOCK TABLES `cfood_user` WRITE;  
 
--------------------------------------------------------------------------
---3.创建用户头像图库表
+#3.创建用户头像图库表
 DROP TABLE IF EXISTS `avatar`;
 
 CREATE TABLE `avatar`(
@@ -35,11 +34,11 @@ CREATE TABLE `avatar`(
     PRIMARY KEY (`avatar_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
--- 锁定headPortrait表的写入
--- LOCK TABLES `headPortrait` WRITE;
+#锁定headPortrait表的写入
+#LOCK TABLES `headPortrait` WRITE;
 
--------------------------------------------------------------------------
--- 4.创建菜品分类表
+
+#4.创建菜品分类表
 DROP TABLE IF EXISTS `food_category`;
 CREATE TABLE `food_category`(
     `category_id` INT NOT NULL AUTO_INCREMENT COMMENT '分类列表ID，主键且自增',
@@ -50,8 +49,7 @@ CREATE TABLE `food_category`(
 LOCK TABLES `food_category` WRITE;
 UNLOCK TABLES;
 
--------------------------------------------------------------------------
---5.创建菜品表  菜品编号非负数
+#5.创建菜品表  菜品编号非负数
 DROP TABLE IF EXISTS `dishes`;
 CREATE TABLE `dishes` (
     `dishes_id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '菜品编号,主键且自增',
@@ -64,10 +62,10 @@ CREATE TABLE `dishes` (
     PRIMARY KEY (`dishes_id`),
     foreign key(`category`) references `food_category`(`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
--------------------------------------------------------------------------
 
 
--- 6.创建定位地址表
+
+# 6.创建定位地址表
 DROP TABLE IF EXISTS `location`;
 
 CREATE TABLE `location`(
@@ -78,12 +76,12 @@ CREATE TABLE `location`(
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
 
--- 锁定写入
--- LOCK TABLES `location` WRITE;
--------------------------------------------------------------------------
+#锁定写入
+# LOCK TABLES `location` WRITE;
 
 
---7.创建广告宣传表 
+
+#7.创建广告宣传表 
 DROP TABLE IF EXISTS `advertis`;
 
 CREATE TABLE `advertis`(
@@ -92,8 +90,8 @@ CREATE TABLE `advertis`(
     PRIMARY KEY (`advertis_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
--------------------------------------------------------------------------
--- 8.用户注册  邮箱验证码表
+
+# 8.用户注册  邮箱验证码表
 DROP TABLE IF EXISTS `codes`;
 
 CREATE TABLE `codes`(
@@ -102,8 +100,9 @@ CREATE TABLE `codes`(
     `number` INT UNSIGNED NOT NULL COMMENT '验证码',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 CHARSET=utf8;
---------------------------------------------------------------------
--- 9.用户文章表
+
+
+# 9.用户文章表
 DROP TABLE IF EXISTS `article`;
 
 CREATE TABLE `article`(
@@ -118,8 +117,8 @@ CREATE TABLE `article`(
     foreign key(`author_id`) references `cfood_user`(`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
--------------------------------------------------------------------------
--- 10.轮播图
+
+# 10.轮播图
 DROP TABLE IF EXISTS `banner`;
 
 CREATE TABLE `banner`(
@@ -130,12 +129,12 @@ CREATE TABLE `banner`(
 
 LOCK TABLES `banner` WRITE;
 
--- INSERT INTO `banner` (`id`,`pic`) VALUES (1,'/images/banner1.jpg'),(2,'/images/banner2.jpg'),(3,'/images/banner3.jpg'),(4,'/images/banner4.jpg'),(5,'/images/banner5.jpg');
+# INSERT INTO `banner` (`id`,`pic`) VALUES (1,'/images/banner1.jpg'),(2,'/images/banner2.jpg'),(3,'/images/banner3.jpg'),(4,'/images/banner4.jpg'),(5,'/images/banner5.jpg');
 
 UNLOCK TABLES;
 
--------------------------------------------------------------------------
--- 11.创建用户反馈表
+
+# 11.创建用户反馈表
 DROP TABLE IF EXISTS `feedback`;
 
 CREATE TABLE `feedback`(
@@ -148,10 +147,10 @@ CREATE TABLE `feedback`(
 
 LOCK TABLES `feedback` WRITE;
 
--- INSERT INTO `feedback` (`id`,`details`,`user_id`) VALUES (1,NULL,1);
+# INSERT INTO `feedback` (`id`,`details`,`user_id`) VALUES (1,NULL,1);
 UNLOCK TABLES;
 
---2.作者表
+#2.作者表
 DROP TABLE IF EXISTS `author`;
 CREATE TABLE `author`(
     `author_id` mediumint(8) NOT NULL AUTO_INCREMENT COMMENT '作者ID,主键且自增',
@@ -161,8 +160,8 @@ CREATE TABLE `author`(
     foreign key(`article_id`) references `article`(`article_id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
--------------------------------------------------------------------------
--- 12.创建用户关注表
+
+# 12.创建用户关注表
 DROP TABLE IF EXISTS `follow`;
 
 CREATE TABLE `follow`(
@@ -176,7 +175,7 @@ CREATE TABLE `follow`(
 
 LOCK TABLES `follow` WRITE;
 
--- INSERT INTO `follow` (`id`,`author_id`,`user_id`) VALUES (1,2,1),(2,3,2);
+# INSERT INTO `follow` (`id`,`author_id`,`user_id`) VALUES (1,2,1),(2,3,2);
 
 UNLOCK TABLES;
 
