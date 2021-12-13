@@ -62,13 +62,14 @@ server.post('/login', (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
   // SQL语句
-  let sql = 'SELECT u_id,u_name,u_password,u_email FROM cfood_user WHERE username=? AND password=MD5(?)';
+  let sql = 'SELECT * FROM cfood_user WHERE username=? AND password=MD5(?)';
   pool.query(sql, [username, password], (error, results) => {
     if (error) throw error;
     if (results.length == 0) { //登录失败
       res.send({
         message: 'login failed',
-        code: 201
+        code: 201,
+        result: results[0]
       });
     } else { //登录成功
       res.send({
@@ -87,15 +88,16 @@ server.post('/register', (req, res) => {
   // 获取用户名和密码信息
   let username = req.body.username;
   let password = req.body.password;
+  let email = req.body.email;
   //以username为条件进行查找操作，以保证用户名的唯一性
-  let sql = 'SELECT COUNT(u_id) AS count FROM cfood_user WHERE username=?';
+  let sql = 'SELECT COUNT(user_id) AS count FROM cfood_user WHERE username=?';
   pool.query(sql, [username], (error, results) => {
     if (error) throw error;
     let count = results[0].count;
     if (count == 0) {
       // 将用户的相关信息插入到数据表
-      sql = 'INSERT cfood_user(username,password) VALUES(?,MD5(?))';
-      pool.query(sql, [username, password], (error, results) => {
+      sql = 'INSERT cfood_user(username,password,email) VALUES(?,MD5(?),email)';
+      pool.query(sql, [username, password,email], (error, results) => {
         if (error) throw error;
         res.send({
           message: 'ok',
