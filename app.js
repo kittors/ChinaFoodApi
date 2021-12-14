@@ -145,12 +145,12 @@ server.post("/deluser", (req, res) => {
   let sql = "DELETE FROM cfood_user WHERE user_id=?";
   pool.query(sql, [user_id], (err, result) => {
     if (err) throw err;
-    if(result.affectedRows == 0){
+    if (result.affectedRows == 0) {
       res.send({
-        message:'error',
-        code:201,
+        message: 'error',
+        code: 201,
       })
-    }else{
+    } else {
       res.send({
         message: 'Deleted successfully',
         code: 200,
@@ -160,24 +160,37 @@ server.post("/deluser", (req, res) => {
 });
 
 //插入头像数据接口
-server.post("/insertpic",(req,res)=>{
-  let path = req.body.images
+server.post("/insertpic", (req, res) => {
+  let path = '/images/avatar/' + req.body.images
   let sql = 'INSERT avatar(images) VALUES(?)'
-  let sql = `Select images from avatar where images = /images/avatar/${path}`
-  pool.query(sql,[`/images/avatar/${path}`],(err,result)=>{
-    if(err) throw err;
-    if(result.affectedRows == 0){
-      res.send({
-      msg:"success",
-      code:200,
-    })
+  let sql2 = `Select images from avatar where images = '${path}'`
+  pool.query(sql2, (err, result) => {
+    if (err) throw err;
+    console.log(result.length == 0)
+    if (result.length == 0) {
+      pool.query(sql, [path], (err, result) => {
+        if (err) throw err;
+        if (result.affectedRows == 1) {
+          res.send({
+            msg: "success",
+            code: 200,
+          })
+        } else {
+          res.send({
+            msg: "Fail",
+            code: 201,
+          })
+        }
+      })
     }else{
       res.send({
-        msg:"Fail",
-        code:201,
+        msg:"Same pictures exist",
+        code:201
       })
     }
   })
+
+
 })
 
 // 头像库接口
@@ -243,7 +256,7 @@ server.post("/dellove", (req, res) => {
     });
   });
 });
-// 关注与否
+// 关注与否 --
 server.get("/isLove", (req, res) => {
   let user_id = req.body.userid;
   let author_id = req.body.authorid;
