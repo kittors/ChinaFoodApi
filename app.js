@@ -19,7 +19,11 @@ const multer = require("multer");
 const uuid = require("uuid");
 
 //body-parser中间件 express的内置中间件可以用来解析JSON格式 二进制格式 文本格式 文本格式
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const {
+  resourceLimits
+} = require('worker_threads');
+const res = require('express/lib/response');
 
 // 创建MySQL连接池
 const pool = mysql.createPool({
@@ -96,8 +100,8 @@ server.post('/register', (req, res) => {
     let count = results[0].count;
     if (count == 0) {
       // 将用户的相关信息插入到数据表
-      sql = 'INSERT cfood_user(username,password,email) VALUES(?,MD5(?),email)';
-      pool.query(sql, [username, password,email], (error, results) => {
+      sql = 'INSERT cfood_user(username,password,email) VALUES(?,MD5(?),?)';
+      pool.query(sql, [username, password, email], (error, results) => {
         if (error) throw error;
         res.send({
           message: 'ok',
@@ -119,23 +123,62 @@ server.get("/user", (req, res) => {
   let sql = "SELECT * FROM cfood_user WHERE username=?";
   pool.query(sql, [username], (err, result) => {
     if (err) throw err;
-    res.send({
-      result: result,
-    });
+    if (result.length == 0) {
+      res.send({
+        message: 'user not exist',
+        code: 201
+      })
+    } else {
+      res.send({
+        message: 'Get Success',
+        code: 200,
+        result: result,
+      });
+    }
   });
 });
 
 // 删除用户接口  给超级管理员用的
-server.get("/user", (req, res) => {
-  let user_id = req.query.userid;
+server.post("/deluser", (req, res) => {
+  let user_id = req.body.user_id;
+  console.log(user_id);
   let sql = "DELETE FROM cfood_user WHERE user_id=?";
   pool.query(sql, [user_id], (err, result) => {
     if (err) throw err;
-    res.send({
-      result: result,
-    });
+    if(result.affectedRows == 0){
+      res.send({
+        message:'error',
+        code:201,
+      })
+    }else{
+      res.send({
+        message: 'Deleted successfully',
+        code: 200,
+      });
+    }
   });
 });
+
+//插入头像数据接口
+server.post("/insertpic",(req,res)=>{
+  let path = req.body.images
+  let sql = 'INSERT avatar(images) VALUES(?)'
+  let sql = `Select images from avatar where images = /images/avatar/${path}`
+  pool.query(sql,[`/images/avatar/${path}`],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows == 0){
+      res.send({
+      msg:"success",
+      code:200,
+    })
+    }else{
+      res.send({
+        msg:"Fail",
+        code:201,
+      })
+    }
+  })
+})
 
 // 头像库接口
 server.get("/userpic", (req, res) => {
@@ -149,7 +192,7 @@ server.get("/userpic", (req, res) => {
 });
 
 // 修改用户头像接口
-server.post("/updatepic", (req, res) => {
+server.post("/updatapic", (req, res) => {
   let sql = "update cfood_user set pic=? where username=?";
   pool.query(sql, [req.body.pic, req.body.username], (err, result) => {
     if (err) throw err;
