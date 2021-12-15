@@ -59,6 +59,7 @@ CREATE TABLE `dishes` (
     `taste` VARCHAR(20) COMMENT '菜品味道',
     `category`  INT NOT NULL COMMENT '菜品分类id,外键',
     `score` INT(5)  COMMENT '菜品评分',
+    `steps`  varchar(2000) COMMENT '菜品的制作步骤',
     PRIMARY KEY (`dishes_id`),
     foreign key(`category`) references `food_category`(`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
@@ -178,4 +179,5 @@ LOCK TABLES `follow` WRITE;
 # INSERT INTO `follow` (`id`,`author_id`,`user_id`) VALUES (1,2,1),(2,3,2);
 
 UNLOCK TABLES;
+
 
