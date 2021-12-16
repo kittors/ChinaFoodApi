@@ -1,8 +1,11 @@
-一、接口说明文档
+一、数据库设计
+http://assets.processon.com/chart_image/61bab1427d9c0868e024f96b.png
+
+二、接口说明文档
 请访问：
 https://docs.apipost.cn/preview/1e0e9d5a5d8eed97/5efaa4d668e3e312
 
-二、接口使用说明：
+三、接口使用说明：
 
 需要 node 环境 ,所以请务必安装 node 环境
 
