@@ -264,7 +264,7 @@ CREATE TABLE `banner`(
 
 LOCK TABLES `banner` WRITE;
 
-# INSERT INTO `banner` (`id`,`pic`) VALUES (1,'/images/banner1.jpg'),(2,'/images/banner2.jpg'),(3,'/images/banner3.jpg'),(4,'/images/banner4.jpg'),(5,'/images/banner5.jpg');
+# INSERT INTO `banner` (`id`,`pic`) VALUES (1,'/public/banner/banner1.jpg'),(2,'/public/banner/banner2.jpg'),(3,'/public/banner/banner3.jpg'),(4,'/public/banner/banner4.jpg'),(5,'/public/banner/banner5.jpg');
 
 UNLOCK TABLES;
 
