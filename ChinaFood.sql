@@ -194,10 +194,34 @@ CREATE TABLE `dishes` (
     `taste` VARCHAR(20) COMMENT '菜品味道',
     `category`  INT NOT NULL COMMENT '菜品分类id,外键',
     `score` INT(5)  COMMENT '菜品评分',
+    `Material` varchar(200) COMMENT '食材材料'
     `steps`  varchar(2000) COMMENT '菜品的制作步骤',
     PRIMARY KEY (`dishes_id`),
     foreign key(`category`) references `food_category`(`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
+
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(1,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(2,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(3,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(4,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(5,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(6,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(7,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(8,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(9,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(10,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(11,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(12,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(13,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(14,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(15,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(16,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(17,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(18,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(19,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(20,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(21,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(22,);
 
 
 
