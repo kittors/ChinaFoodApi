@@ -105,6 +105,7 @@ server.post("/register", (req, res) => {
         res.send({
           message: "ok",
           code: 200,
+          results,
         });
       });
     } else {

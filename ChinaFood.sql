@@ -24,9 +24,25 @@ CREATE TABLE `cfood_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 #锁定cfood_user表的写入
 # LOCK TABLES `cfood_user` WRITE;  
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('root','ff9830c42660c1dd1942844f8069b74a','12312@qq.com','licy',19,'/public/avatar/1.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('1234YUan','1b32ea179af6fbeee4945b69f0f692da','12312@qq.com','tom',18,'/public/avatar/2.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('root1','96c7a36b5ce81fa43e8279c6ca438231','12312@qq.com','baby',29,'/public/avatar/3.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('12981Y','e80d25cbaf905ebf1deb541af425434b','12312@qq.com','good',32,'/public/avatar/4.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('121J','da18b6fd33758e128cba26694d461a71','12312@qq.com','Lucy',22,'/public/avatar/5.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('root6','0de8594dd96f877e5ff1c0a8af897d61','12312@qq.com','Alit',24,'/public/avatar/6.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('12','165937b0a60d6dea259c1adc5d1bb909','12312@qq.com','Bob',101,'/public/avatar/7.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('13223','2c4a3dec7f6245d9ba25e58787862d5a','12312@qq.com','Right',12,'/public/avatar/8.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('12321','ecbe0757abdeb929a0b2488e90c9fb87','12312@qq.com','mounted',56,'/public/avatar/9.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('123dfdf','d8c6dad8bb983135db4730fe0ba89674','12312@qq.com','Mouth',14,'/public/avatar/10.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('12idfiadsfj','14ea78fa124cb3e53f8953fbca435c43','12312@qq.com','kittors',26,'/public/avatar/11.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('121fdad','ebbe35ad09f5f9c8b27e582eaf75937b','12312@qq.com','muster',23,'/public/avatar/12.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('root4','e5d9dee0892c9f474a174d3bfffb7810','12312@qq.com','Mater',20,'/public/avatar/13.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('root2','9b70d6dbfb1457d05e4e2c2fbb42d7db','12312@qq.com','Kily',19,'/public/avatar/14.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('root3','c63526821e73a8dc412566be9968bcd3','12312@qq.com','Berste',23,'/public/avatar/15.jpg');
+INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('root5','530f086cfe178d16365a9ab9f537e81a','12312@qq.com','Wow',63,'/public/avatar/16.jpg');
 
 
-#3.创建用户头像图库表
+#2.创建用户头像图库表
 DROP TABLE IF EXISTS `avatar`;
 
 CREATE TABLE `avatar`(
@@ -35,11 +51,121 @@ CREATE TABLE `avatar`(
     PRIMARY KEY (`avatar_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
+INSERT INTO avatar(images) VALUES('/public/avatar/1.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/2.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/3.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/4.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/5.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/6.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/7.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/8.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/9.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/10.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/11.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/12.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/13.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/14.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/15.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/16.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/17.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/18.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/19.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/20.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/21.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/22.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/23.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/24.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/25.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/26.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/27.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/28.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/29.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/30.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/31.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/32.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/33.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/34.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/35.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/36.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/37.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/38.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/39.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/40.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/41.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/42.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/43.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/44.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/45.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/46.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/47.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/48.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/49.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/50.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/51.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/52.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/53.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/54.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/55.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/56.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/57.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/58.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/59.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/60.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/61.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/62.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/63.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/64.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/65.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/66.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/67.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/68.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/69.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/70.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/71.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/72.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/73.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/74.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/75.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/76.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/77.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/78.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/79.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/80.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/81.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/82.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/83.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/84.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/85.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/86.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/87.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/88.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/89.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/90.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/91.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/92.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/93.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/94.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/95.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/96.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/97.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/98.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/99.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/100.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/101.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/102.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/103.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/104.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/105.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/106.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/107.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/108.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/109.jpg')
+INSERT INTO avatar(images) VALUES('/public/avatar/110.jpg')
 #锁定headPortrait表的写入
 #LOCK TABLES `headPortrait` WRITE;
 
 
-#4.创建菜品分类表
+#3.创建菜品分类表
 DROP TABLE IF EXISTS `food_category`;
 CREATE TABLE `food_category`(
     `category_id` INT NOT NULL AUTO_INCREMENT COMMENT '分类列表ID，主键且自增',
@@ -47,10 +173,18 @@ CREATE TABLE `food_category`(
     `category_name` varchar(10) NOT NULL,
     PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
+INSERT INTO food_category(pic,category_name) VALUES('/public/category/tiandain2.png','甜点')
+INSERT INTO food_category(pic,category_name) VALUES('/public/category/tanggen.png','汤羹')
+INSERT INTO food_category(pic,category_name) VALUES('/public/category/rou2.png','肉类')
+INSERT INTO food_category(pic,category_name) VALUES('/public/category/mogu.png','菌类')
+INSERT INTO food_category(pic,category_name) VALUES('/public/category/lajiao.png','辣椒')
+INSERT INTO food_category(pic,category_name) VALUES('/public/category/kugua.png','苦味')
+INSERT INTO food_category(pic,category_name) VALUES('/public/category/shucai2.png','蔬菜')
+
 LOCK TABLES `food_category` WRITE;
 UNLOCK TABLES;
 
-#5.创建菜品表  菜品编号非负数
+#4.创建菜品表  菜品编号非负数
 DROP TABLE IF EXISTS `dishes`;
 CREATE TABLE `dishes` (
     `dishes_id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '菜品编号,主键且自增',
@@ -67,13 +201,12 @@ CREATE TABLE `dishes` (
 
 
 
-# 6.创建定位地址表
+# 5.创建定位地址表
 DROP TABLE IF EXISTS `location`;
 
 CREATE TABLE `location`(
     `location_id` INT AUTO_INCREMENT NOT NULL COMMENT '地址ID，主键且自增',
     `name` varchar(20) NOT NULL COMMENT '地址名称',
-    `initials` varchar(5)  COMMENT '首字母排序',
     PRIMARY KEY (`location_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
@@ -83,7 +216,7 @@ CREATE TABLE `location`(
 
 
 
-#7.创建广告宣传表 
+#6.创建广告宣传表 
 DROP TABLE IF EXISTS `advertis`;
 
 CREATE TABLE `advertis`(
@@ -93,7 +226,7 @@ CREATE TABLE `advertis`(
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
 
-# 8.用户注册  邮箱验证码表
+# 7.用户注册  邮箱验证码表
 DROP TABLE IF EXISTS `codes`;
 
 CREATE TABLE `codes`(
@@ -104,7 +237,7 @@ CREATE TABLE `codes`(
 ) ENGINE=InnoDB AUTO_INCREMENT=10 CHARSET=utf8;
 
 
-# 9.用户文章表
+# 8.用户文章表
 DROP TABLE IF EXISTS `article`;
 
 CREATE TABLE `article`(
@@ -120,7 +253,7 @@ CREATE TABLE `article`(
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
 
-# 10.轮播图
+# 9.轮播图
 DROP TABLE IF EXISTS `banner`;
 
 CREATE TABLE `banner`(
@@ -136,7 +269,7 @@ LOCK TABLES `banner` WRITE;
 UNLOCK TABLES;
 
 
-# 11.创建用户反馈表
+# 10.创建用户反馈表
 DROP TABLE IF EXISTS `feedback`;
 
 CREATE TABLE `feedback`(
@@ -152,7 +285,7 @@ LOCK TABLES `feedback` WRITE;
 # INSERT INTO `feedback` (`id`,`details`,`user_id`) VALUES (1,NULL,1);
 UNLOCK TABLES;
 
-#2.作者表
+#11.作者表
 DROP TABLE IF EXISTS `author`;
 CREATE TABLE `author`(
     `author_id` mediumint(8) NOT NULL AUTO_INCREMENT COMMENT '作者ID,主键且自增',
