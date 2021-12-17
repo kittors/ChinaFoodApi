@@ -453,6 +453,28 @@ server.post("/insertdishes", (req, res) => {
   );
 });
 
+// 根据 菜系 菜品名 菜品类名 菜品味道 菜品评分 模糊搜索搜索菜品信息
+server.get("/search", (req, res) => {
+  let item = "%" + req.query.item + "%";
+  let sql =
+    "SELECT * FROM dishes WHERE (category_name LIKE ? or dishes_name LIKE ?  or taste LIKE ? or score LIKE ?) LIMIT 20";
+  pool.query(sql, [item, item, item, item], (err, result) => {
+    if (err) throw err;
+    console.log(result, sql);
+    if (result.length == 0) {
+      res.send({
+        code: 0,
+        msg: "查询无结果",
+      });
+    } else {
+      res.send({
+        code: 1,
+        result: result,
+      });
+    }
+  });
+});
+
 // 根据 菜系 搜索菜品信息
 server.get("/categorySearch", (req, res) => {
   let category_name = "%" + req.query.category_name + "%";
