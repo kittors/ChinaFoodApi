@@ -457,7 +457,7 @@ server.post("/insertdishes", (req, res) => {
 server.get("/search", (req, res) => {
   let item = "%" + req.query.item + "%";
   let sql =
-    "SELECT * FROM dishes WHERE (category_name LIKE ? or dishes_name LIKE ?  or taste LIKE ? or score LIKE ?) LIMIT 20";
+    "SELECT * FROM dishes WHERE (category_name LIKE ? or dishes_name LIKE ?  or taste LIKE ? or score LIKE ?) ORDER BY RAND() LIMIT 20";
   pool.query(sql, [item, item, item, item], (err, result) => {
     if (err) throw err;
     console.log(result, sql);
@@ -478,7 +478,8 @@ server.get("/search", (req, res) => {
 // 根据 菜系 搜索菜品信息
 server.get("/categorySearch", (req, res) => {
   let category_name = "%" + req.query.category_name + "%";
-  let sql = "SELECT * FROM dishes WHERE category_name LIKE ? LIMIT 20";
+  let sql =
+    "SELECT * FROM dishes WHERE category_name LIKE ? ORDER BY RAND() LIMIT 20";
   pool.query(sql, [category_name], (err, result) => {
     if (err) throw err;
     console.log(result, sql);
@@ -499,7 +500,8 @@ server.get("/categorySearch", (req, res) => {
 //根据 菜品名 搜索菜品信息  修改了
 server.get("/dishesNameSearch", (req, res) => {
   let dishes_name = "%" + req.query.dishes_name + "%";
-  let sql = "SELECT * FROM dishes WHERE dishes_name LIKE ? LIMIT 20";
+  let sql =
+    "SELECT * FROM dishes WHERE dishes_name LIKE ? ORDER BY RAND() LIMIT 20";
   pool.query(sql, [dishes_name], (err, result) => {
     if (err) throw err;
     if (result.length == 0) {
@@ -519,7 +521,7 @@ server.get("/dishesNameSearch", (req, res) => {
 //根据 菜品味道 搜索菜品信息
 server.get("/tasteSearch", (req, res) => {
   let taste = "%" + req.query.taste + "%";
-  let sql = "SELECT * FROM dishes WHERE taste LIKE ? LIMIT 20";
+  let sql = "SELECT * FROM dishes WHERE taste LIKE ? ORDER BY RAND() LIMIT 20";
   pool.query(sql, [taste], (err, result) => {
     if (err) throw err;
     if (result.length == 0) {
@@ -539,7 +541,7 @@ server.get("/tasteSearch", (req, res) => {
 //根据 菜品评分 搜索菜品信息
 server.get("/scoreSearch", (req, res) => {
   let score = req.query.score;
-  let sql = "SELECT * FROM dishes WHERE score = ? LIMIT 20";
+  let sql = "SELECT * FROM dishes WHERE score = ? ORDER BY RAND() LIMIT 20";
   pool.query(sql, [score], (err, result) => {
     if (err) throw err;
     if (result.length == 0) {
@@ -559,7 +561,8 @@ server.get("/scoreSearch", (req, res) => {
 // 根据作者的名字搜索文章信息
 server.get("/authorArticleSearch", (req, res) => {
   let author_name = "%" + req.query.authorName + "%";
-  let sql = "SELECT * FROM article WHERE author_name LIKE ? LIMIT 20";
+  let sql =
+    "SELECT * FROM article WHERE author_name LIKE ? ORDER BY RAND() LIMIT 20";
   pool.query(sql, [author_name], (err, result) => {
     if (err) throw err;
     if (result.length == 0) {
@@ -579,7 +582,7 @@ server.get("/authorArticleSearch", (req, res) => {
 // 根据文章名关键字搜索文章
 server.get("/articleSearch", (req, res) => {
   let title = "%" + req.query.title + "%";
-  let sql = "SELECT * FROM article WHERE title LIKE ? LIMIT 20";
+  let sql = "SELECT * FROM article WHERE title LIKE ? ORDER BY RAND() LIMIT 20";
   pool.query(sql, [title], (err, result) => {
     if (err) throw err;
     if (result.length == 0) {
