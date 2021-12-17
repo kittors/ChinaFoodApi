@@ -61,11 +61,13 @@ server.use(
 // 用户登录接口
 server.post("/login", (req, res) => {
   //获取用户名和密码信息
+  let email = req.body.email;
   let username = req.body.username;
   let password = req.body.password;
   // SQL语句
-  let sql = "SELECT * FROM cfood_user WHERE username=? AND password=MD5(?)";
-  pool.query(sql, [username, password], (error, results) => {
+  let sql =
+    "SELECT * FROM cfood_user WHERE (username=? or email=?) AND password=MD5(?)";
+  pool.query(sql, [username, email, password], (error, results) => {
     if (error) throw error;
     if (results.length == 0) {
       //登录失败
@@ -453,10 +455,11 @@ server.post("/insertdishes", (req, res) => {
 
 // 根据 菜系 搜索菜品信息
 server.get("/categorySearch", (req, res) => {
-  let category_name = "%" + req.query.categoryName + "%";
+  let category_name = "%" + req.query.category_name + "%";
   let sql = "SELECT * FROM dishes WHERE category_name LIKE ? LIMIT 12";
   pool.query(sql, [category_name], (err, result) => {
     if (err) throw err;
+    console.log(result, sql);
     if (result.length == 0) {
       res.send({
         code: 0,
@@ -473,7 +476,7 @@ server.get("/categorySearch", (req, res) => {
 
 //根据 菜品名 搜索菜品信息  修改了
 server.get("/dishesNameSearch", (req, res) => {
-  let dishes_name = "%" + req.query.dishName + "%";
+  let dishes_name = "%" + req.query.dishes_name + "%";
   let sql = "SELECT * FROM dishes WHERE dishes_name LIKE ? LIMIT 12";
   pool.query(sql, [dishes_name], (err, result) => {
     if (err) throw err;
