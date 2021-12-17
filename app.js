@@ -516,8 +516,8 @@ server.get("/tasteSearch", (req, res) => {
 
 //根据 菜品评分 搜索菜品信息
 server.get("/scoreSearch", (req, res) => {
-  let score = "%" + req.query.score + "%";
-  let sql = "SELECT * FROM dishes WHERE score LIKE ? LIMIT 12";
+  let score = req.query.score;
+  let sql = "SELECT * FROM dishes WHERE score = ? LIMIT 12";
   pool.query(sql, [score], (err, result) => {
     if (err) throw err;
     if (result.length == 0) {
@@ -574,10 +574,10 @@ server.get("/articleSearch", (req, res) => {
   });
 });
 
-// 菜系图标表
+// 菜品分类图标表
 server.get("/foodCategory", (req, res) => {
   let sql = "SELECT * FROM food_category";
-  pool.query(sql, [category_name], (err, result) => {
+  pool.query(sql, (err, result) => {
     if (err) throw err;
     res.send({
       result: result,
