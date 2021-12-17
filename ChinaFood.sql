@@ -44,7 +44,6 @@ INSERT INTO cfood_user(username,password,email,nickname,age,pic) VALUES('root5',
 
 #2.创建用户头像图库表
 DROP TABLE IF EXISTS `avatar`;
-
 CREATE TABLE `avatar`(
     `avatar_id` INT UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '头像库ID，主键且自增',
     `images` varchar(100)  COMMENT '头像路径',
@@ -95,9 +94,6 @@ INSERT INTO avatar(images) VALUES('/public/avatar/41.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/42.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/43.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/44.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/45.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/46.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/47.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/48.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/49.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/50.jpg');
@@ -150,17 +146,10 @@ INSERT INTO avatar(images) VALUES('/public/avatar/96.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/97.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/98.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/99.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/100.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/101.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/102.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/103.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/104.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/105.jpg');
 INSERT INTO avatar(images) VALUES('/public/avatar/106.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/107.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/108.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/109.jpg');
-INSERT INTO avatar(images) VALUES('/public/avatar/110.jpg');
+
 #锁定headPortrait表的写入
 #LOCK TABLES `headPortrait` WRITE;
 
@@ -173,13 +162,13 @@ CREATE TABLE `food_category`(
     `category_name` varchar(10) NOT NULL,
     PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
-INSERT INTO food_category(pic,category_name) VALUES('/public/category/tiandain2.png','甜点');
-INSERT INTO food_category(pic,category_name) VALUES('/public/category/tanggen.png','汤羹');
-INSERT INTO food_category(pic,category_name) VALUES('/public/category/rou2.png','肉类');
-INSERT INTO food_category(pic,category_name) VALUES('/public/category/mogu.png','菌类');
-INSERT INTO food_category(pic,category_name) VALUES('/public/category/lajiao.png','辣椒');
-INSERT INTO food_category(pic,category_name) VALUES('/public/category/kugua.png','苦味');
-INSERT INTO food_category(pic,category_name) VALUES('/public/category/shucai2.png','蔬菜');
+INSERT INTO food_category(category_id,pic,category_name) VALUES(1,'/public/category/tiandain2.png','甜点');
+INSERT INTO food_category(category_id,pic,category_name) VALUES(2,'/public/category/tanggen.png','汤羹');
+INSERT INTO food_category(category_id,pic,category_name) VALUES(3,'/public/category/rou2.png','肉类');
+INSERT INTO food_category(category_id,pic,category_name) VALUES(4,'/public/category/mogu.png','菌类');
+INSERT INTO food_category(category_id,pic,category_name) VALUES(5,'/public/category/lajiao.png','辣');
+INSERT INTO food_category(category_id,pic,category_name) VALUES(6,'/public/category/kugua.png','苦');
+INSERT INTO food_category(category_id,pic,category_name) VALUES(7,'/public/category/shucai2.png','蔬菜');
 
 LOCK TABLES `food_category` WRITE;
 UNLOCK TABLES;
@@ -194,34 +183,42 @@ CREATE TABLE `dishes` (
     `taste` VARCHAR(20) COMMENT '菜品味道',
     `category`  INT NOT NULL COMMENT '菜品分类id,外键',
     `score` INT(5)  COMMENT '菜品评分',
-    `Material` varchar(200) COMMENT '食材材料'
+    `Material` varchar(200) COMMENT '食材材料 主要分为主料 辅料 调料, 用"."隔开,小项目用","隔开',
     `steps`  varchar(2000) COMMENT '菜品的制作步骤',
     PRIMARY KEY (`dishes_id`),
     foreign key(`category`) references `food_category`(`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8;
 
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(1,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(2,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(3,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(4,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(5,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(6,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(7,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(8,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(9,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(10,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(11,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(12,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(13,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(14,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(15,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(16,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(17,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(18,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(19,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(20,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(21,);
-INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(22,);
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(1,'西兰花虾仁木耳烧豆腐','/public/food/1.jpg','浙江菜','咸鲜',7,5,'虾仁,西兰花,黑木耳,胡萝卜,北豆腐.姜,葱白,淀粉,胡椒粉.油,盐,生抽,料酒','1.虾仁开背，挑去虾线清洗干净，加盐、料酒、胡椒粉、少许淀粉拌匀放置10分钟。;2.西兰花在淡盐水中清洗干净，黑木耳泡发清洗，北豆腐切片，胡萝卜切片，姜片、葱白切好备用。;3.锅中放油，放入虾仁凉面煎制变色盛出。;4.锅中留余油，煸香葱姜后放入胡萝卜翻炒。;5.放入黑木耳、豆腐，盐和生抽翻炒片刻。;6.放入西兰花，加水烧煮5分钟。;7.放入虾仁烧2分钟即可。;8.成品，营养丰富，汤汁鲜美。');
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(2,'冬瓜玉米汤','/public/food/2.jpg','江苏菜',"清淡",2,4,"玉米,冬瓜.小葱.清水,盐,鸡精,花生油",'1.玉米清理干净;2.冬瓜去掉瓤，洗干净不用去皮切成薄片，葱白切断，葱叶切成葱花。;3.锅中倒油，小火将葱段炒出香味。;4.锅中烧水，将切好的玉米块放进去煮10分钟。;5.再将冬瓜放进去煮五分钟关火。;6.里面加盐和鸡精搅拌均匀。;7.装碗撒上葱花开吃。;8.成品图。');
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(3,'清香爽口的蒜烧冬瓜条','/public/food/3.jpg','粤菜',"咸味",7,3,"冬瓜.大葱,油,水.盐,酱油.蒜香","1.冬瓜去皮去籽，切条，大蒜一把。;2.热锅温油，蒜瓣炝锅。;3.冬瓜条入锅翻炒，加半杯水，盖盖子焖炖3分钟。;4.喜欢吃冬瓜原味的就加一点儿盐。;5.喜欢带着酱香味的可淋适量酱油。;6.翻拌均匀，出锅装盘，撒少许香葱粒。;7.蒜烧冬瓜条，清淡爽口又开胃！;");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(4,'冬瓜丸子汤','/public/food/4.jpg','浙江菜','咸香',3,5,"冬瓜,猪肉馅.玉米巅峰,香葱末,凉水.耗油,盐,白胡椒粉","1.冬瓜和肉馅准备好.;2.肉馅中倒入适量蚝油，白胡椒粉，这两种调料都有去腥提鲜的效果，无需再放料酒；;3.想要肉丸抱团不松散，放一小勺玉米淀粉起到粘合效果，也可以放半个到一个鸡蛋清；;4.加少许盐，顺着一个方向搅拌；想要肉丸口感嫩，一定要往肉馅里打水；肉的含水量不一样，所以要少量多次的加凉水，搅拌至肉馅能呈现明显的带拉丝状的漩涡就可以了，静置一会儿再使用，使水完全吃进去，肉丸入水就坚挺不趴了；;5.冬瓜去皮、去籽，切细长薄片；;6.入凉水锅中煮开，肉丸入水前将火力调小，保持微沸状态；;7.取一个小勺，蘸点儿水，挖一勺肉馅，在碗里摔打几下，肉丸表面就很光滑了；;8.将肉丸送入水中，重新舀肉丸再摔打，直到肉勺全部入汤；表面变色后转中大火，煮2分钟，肉丸浮在水面即关火，酌情加香油、香葱末、盐。;9.冬瓜丸子汤，鲜美营养又好吃！");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(5,'海带冬瓜味增汤','/public/food/5.jpg','徽菜','清淡',2,5,"海带,冬瓜.味精,大豆油.","1.冬瓜洗净，去皮，切片。;2.盐渍海带提前浸泡一晚，去掉咸味，洗净，切成和冬瓜差不多的片。;3.炒锅烧热，倒油，放入冬瓜和海带翻炒。;4.加入味增。;5.加入适量水，搅拌均匀。;6.待冬瓜和海带煮熟后，加入葱花，搅拌均匀。");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(6,'耗油冬瓜','/public/food/6.jpg','川菜','咸鲜',7,4,"冬瓜,虾皮.耗油,白糖,生抽,老抽.","1.准备的原料。;2.冬瓜去皮，去籽切厚片。;3.热锅凉油，下入冬瓜煸炒几十秒。;4.加入虾皮，冬瓜，白糖，生抽，老抽，蚝油。;5.翻炒均匀。;6.加半碗清水烧开。;7.盖小火炖五六分钟就可以。;8.蚝油冬瓜完成。");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(7,'肉末冬瓜','/public/food/7.jpg','川菜','咸鲜',2,5,"冬瓜,肉末.姜末,蒜末.","1.准备、冬瓜去皮洗净切片;2.锅中倒入适量油、下入肉末炒至变色;3.下入葱姜末炒香;4.下入冬瓜片炒均匀;5.掺入末过冬瓜的水;6.下入盐、煮至冬瓜熟透即可;7.咸香美味的冬瓜就做好啦。");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(8,'茄汁冬瓜','/public/food/8.jpg','徽菜','清淡',7,5,"番茄,冬瓜,葱.油,盐,蔬之鲜,水.","1.所需食材准备就绪;2.冬瓜去皮切块;3.番茄改刀;4.葱切碎备用;5.锅中入油烧热倒入葱爆香;6.加入冬瓜;7.放入番茄加少许蔬之鲜调味;8.加水煮沸转小火煮炖十五分钟;9.加盐调味，入味关火;10.家常低脂菜，美味又健康;11.成品图");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(9,'酱爆洋葱','/public/food/[闽菜]---酱爆洋葱.jpg','川菜','咸香',1,5,"冬瓜.大葱,油,水.盐,酱油.蒜香","1.冬瓜去皮去籽，切条，大蒜一把。;2.热锅温油，蒜瓣炝锅。;3.冬瓜条入锅翻炒，加半杯水，盖盖子焖炖3分钟。;4.喜欢吃冬瓜原味的就加一点儿盐。;5.喜欢带着酱香味的可淋适量酱油。;6.翻拌均匀，出锅装盘，撒少许香葱粒。;7.蒜烧冬瓜条，清淡爽口又开胃！;");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(10,'妈妈的拿手菜','/public/food/【传统闽菜荔枝肉】妈妈的拿手菜.jpg','浙江菜','清淡',5,5,"冬瓜.大葱,油,水.盐,酱油.蒜香","1.冬瓜去皮去籽，切条，大蒜一把。;2.热锅温油，蒜瓣炝锅。;3.冬瓜条入锅翻炒，加半杯水，盖盖子焖炖3分钟。;4.喜欢吃冬瓜原味的就加一点儿盐。;5.喜欢带着酱香味的可淋适量酱油。;6.翻拌均匀，出锅装盘，撒少许香葱粒。;7.蒜烧冬瓜条，清淡爽口又开胃！;");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(11,'西兰花虾仁木耳烧豆腐','/public/food/1.jpg','浙江菜','咸鲜',7,5,'虾仁,西兰花,黑木耳,胡萝卜,北豆腐.姜,葱白,淀粉,胡椒粉.油,盐,生抽,料酒','1.虾仁开背，挑去虾线清洗干净，加盐、料酒、胡椒粉、少许淀粉拌匀放置10分钟。;2.西兰花在淡盐水中清洗干净，黑木耳泡发清洗，北豆腐切片，胡萝卜切片，姜片、葱白切好备用。;3.锅中放油，放入虾仁凉面煎制变色盛出。;4.锅中留余油，煸香葱姜后放入胡萝卜翻炒。;5.放入黑木耳、豆腐，盐和生抽翻炒片刻。;6.放入西兰花，加水烧煮5分钟。;7.放入虾仁烧2分钟即可。;8.成品，营养丰富，汤汁鲜美。');
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(12,'冬瓜玉米汤','/public/food/2.jpg','江苏菜',"清淡",2,4,"玉米,冬瓜.小葱.清水,盐,鸡精,花生油",'1.玉米清理干净;2.冬瓜去掉瓤，洗干净不用去皮切成薄片，葱白切断，葱叶切成葱花。;3.锅中倒油，小火将葱段炒出香味。;4.锅中烧水，将切好的玉米块放进去煮10分钟。;5.再将冬瓜放进去煮五分钟关火。;6.里面加盐和鸡精搅拌均匀。;7.装碗撒上葱花开吃。;8.成品图。');
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(13,'清香爽口的蒜烧冬瓜条','/public/food/3.jpg','粤菜',"咸味",7,3,"冬瓜.大葱,油,水.盐,酱油.蒜香","1.冬瓜去皮去籽，切条，大蒜一把。;2.热锅温油，蒜瓣炝锅。;3.冬瓜条入锅翻炒，加半杯水，盖盖子焖炖3分钟。;4.喜欢吃冬瓜原味的就加一点儿盐。;5.喜欢带着酱香味的可淋适量酱油。;6.翻拌均匀，出锅装盘，撒少许香葱粒。;7.蒜烧冬瓜条，清淡爽口又开胃！;");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(14,'冬瓜丸子汤','/public/food/4.jpg','浙江菜','咸香',3,5,"冬瓜,猪肉馅.玉米巅峰,香葱末,凉水.耗油,盐,白胡椒粉","1.冬瓜和肉馅准备好.;2.肉馅中倒入适量蚝油，白胡椒粉，这两种调料都有去腥提鲜的效果，无需再放料酒；;3.想要肉丸抱团不松散，放一小勺玉米淀粉起到粘合效果，也可以放半个到一个鸡蛋清；;4.加少许盐，顺着一个方向搅拌；想要肉丸口感嫩，一定要往肉馅里打水；肉的含水量不一样，所以要少量多次的加凉水，搅拌至肉馅能呈现明显的带拉丝状的漩涡就可以了，静置一会儿再使用，使水完全吃进去，肉丸入水就坚挺不趴了；;5.冬瓜去皮、去籽，切细长薄片；;6.入凉水锅中煮开，肉丸入水前将火力调小，保持微沸状态；;7.取一个小勺，蘸点儿水，挖一勺肉馅，在碗里摔打几下，肉丸表面就很光滑了；;8.将肉丸送入水中，重新舀肉丸再摔打，直到肉勺全部入汤；表面变色后转中大火，煮2分钟，肉丸浮在水面即关火，酌情加香油、香葱末、盐。;9.冬瓜丸子汤，鲜美营养又好吃！");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(15,'海带冬瓜味增汤','/public/food/5.jpg','徽菜','清淡',2,5,"海带,冬瓜.味精,大豆油.","1.冬瓜洗净，去皮，切片。;2.盐渍海带提前浸泡一晚，去掉咸味，洗净，切成和冬瓜差不多的片。;3.炒锅烧热，倒油，放入冬瓜和海带翻炒。;4.加入味增。;5.加入适量水，搅拌均匀。;6.待冬瓜和海带煮熟后，加入葱花，搅拌均匀。");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(16,'耗油冬瓜','/public/food/6.jpg','川菜','咸鲜',7,4,"冬瓜,虾皮.耗油,白糖,生抽,老抽.","1.准备的原料。;2.冬瓜去皮，去籽切厚片。;3.热锅凉油，下入冬瓜煸炒几十秒。;4.加入虾皮，冬瓜，白糖，生抽，老抽，蚝油。;5.翻炒均匀。;6.加半碗清水烧开。;7.盖小火炖五六分钟就可以。;8.蚝油冬瓜完成。");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(17,'肉末冬瓜','/public/food/7.jpg','川菜','咸鲜',2,5,"冬瓜,肉末.姜末,蒜末.","1.准备、冬瓜去皮洗净切片;2.锅中倒入适量油、下入肉末炒至变色;3.下入葱姜末炒香;4.下入冬瓜片炒均匀;5.掺入末过冬瓜的水;6.下入盐、煮至冬瓜熟透即可;7.咸香美味的冬瓜就做好啦。");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(18,'茄汁冬瓜','/public/food/8.jpg','徽菜','清淡',7,5,"番茄,冬瓜,葱.油,盐,蔬之鲜,水.","1.所需食材准备就绪;2.冬瓜去皮切块;3.番茄改刀;4.葱切碎备用;5.锅中入油烧热倒入葱爆香;6.加入冬瓜;7.放入番茄加少许蔬之鲜调味;8.加水煮沸转小火煮炖十五分钟;9.加盐调味，入味关火;10.家常低脂菜，美味又健康;11.成品图");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(19,'酱爆洋葱','/public/food/[闽菜]---酱爆洋葱.jpg','川菜','咸香',1,5,"冬瓜.大葱,油,水.盐,酱油.蒜香","1.冬瓜去皮去籽，切条，大蒜一把。;2.热锅温油，蒜瓣炝锅。;3.冬瓜条入锅翻炒，加半杯水，盖盖子焖炖3分钟。;4.喜欢吃冬瓜原味的就加一点儿盐。;5.喜欢带着酱香味的可淋适量酱油。;6.翻拌均匀，出锅装盘，撒少许香葱粒。;7.蒜烧冬瓜条，清淡爽口又开胃！;");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(20,'妈妈的拿手菜','/public/food/【传统闽菜荔枝肉】妈妈的拿手菜.jpg','浙江菜','清淡',5,5,"冬瓜.大葱,油,水.盐,酱油.蒜香","1.冬瓜去皮去籽，切条，大蒜一把。;2.热锅温油，蒜瓣炝锅。;3.冬瓜条入锅翻炒，加半杯水，盖盖子焖炖3分钟。;4.喜欢吃冬瓜原味的就加一点儿盐。;5.喜欢带着酱香味的可淋适量酱油。;6.翻拌均匀，出锅装盘，撒少许香葱粒。;7.蒜烧冬瓜条，清淡爽口又开胃！;");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(21,'西兰花虾仁木耳烧豆腐','/public/food/11.jpg','浙江菜','咸鲜',7,5,'虾仁,西兰花,黑木耳,胡萝卜,北豆腐.姜,葱白,淀粉,胡椒粉.油,盐,生抽,料酒','1.虾仁开背，挑去虾线清洗干净，加盐、料酒、胡椒粉、少许淀粉拌匀放置10分钟。;2.西兰花在淡盐水中清洗干净，黑木耳泡发清洗，北豆腐切片，胡萝卜切片，姜片、葱白切好备用。;3.锅中放油，放入虾仁凉面煎制变色盛出。;4.锅中留余油，煸香葱姜后放入胡萝卜翻炒。;5.放入黑木耳、豆腐，盐和生抽翻炒片刻。;6.放入西兰花，加水烧煮5分钟。;7.放入虾仁烧2分钟即可。;8.成品，营养丰富，汤汁鲜美。');
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(22,'冬瓜玉米汤','/public/food/12.jpg','江苏菜',"清淡",2,4,"玉米,冬瓜.小葱.清水,盐,鸡精,花生油",'1.玉米清理干净;2.冬瓜去掉瓤，洗干净不用去皮切成薄片，葱白切断，葱叶切成葱花。;3.锅中倒油，小火将葱段炒出香味。;4.锅中烧水，将切好的玉米块放进去煮10分钟。;5.再将冬瓜放进去煮五分钟关火。;6.里面加盐和鸡精搅拌均匀。;7.装碗撒上葱花开吃。;8.成品图。');
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(23,'红烧猪蹄子','/public/food/13.jpg','粤菜',"咸味",7,3,"冬瓜.大葱,油,水.盐,酱油.蒜香","1.冬瓜去皮去籽，切条，大蒜一把。;2.热锅温油，蒜瓣炝锅。;3.冬瓜条入锅翻炒，加半杯水，盖盖子焖炖3分钟。;4.喜欢吃冬瓜原味的就加一点儿盐。;5.喜欢带着酱香味的可淋适量酱油。;6.翻拌均匀，出锅装盘，撒少许香葱粒。;7.蒜烧冬瓜条，清淡爽口又开胃！;");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(24,'清汤丸子汤','/public/food/14.jpg','浙江菜','咸香',3,5,"冬瓜,猪肉馅.玉米巅峰,香葱末,凉水.耗油,盐,白胡椒粉","1.冬瓜和肉馅准备好.;2.肉馅中倒入适量蚝油，白胡椒粉，这两种调料都有去腥提鲜的效果，无需再放料酒；;3.想要肉丸抱团不松散，放一小勺玉米淀粉起到粘合效果，也可以放半个到一个鸡蛋清；;4.加少许盐，顺着一个方向搅拌；想要肉丸口感嫩，一定要往肉馅里打水；肉的含水量不一样，所以要少量多次的加凉水，搅拌至肉馅能呈现明显的带拉丝状的漩涡就可以了，静置一会儿再使用，使水完全吃进去，肉丸入水就坚挺不趴了；;5.冬瓜去皮、去籽，切细长薄片；;6.入凉水锅中煮开，肉丸入水前将火力调小，保持微沸状态；;7.取一个小勺，蘸点儿水，挖一勺肉馅，在碗里摔打几下，肉丸表面就很光滑了；;8.将肉丸送入水中，重新舀肉丸再摔打，直到肉勺全部入汤；表面变色后转中大火，煮2分钟，肉丸浮在水面即关火，酌情加香油、香葱末、盐。;9.冬瓜丸子汤，鲜美营养又好吃！");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(25,'黄金炸小土豆','/public/food/15.jpg','徽菜','清淡',2,5,"海带,冬瓜.味精,大豆油.","1.冬瓜洗净，去皮，切片。;2.盐渍海带提前浸泡一晚，去掉咸味，洗净，切成和冬瓜差不多的片。;3.炒锅烧热，倒油，放入冬瓜和海带翻炒。;4.加入味增。;5.加入适量水，搅拌均匀。;6.待冬瓜和海带煮熟后，加入葱花，搅拌均匀。");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(26,'耗油冬甲鱼炖汤','/public/food/16.jpg','川菜','咸鲜',7,4,"冬瓜,虾皮.耗油,白糖,生抽,老抽.","1.准备的原料。;2.冬瓜去皮，去籽切厚片。;3.热锅凉油，下入冬瓜煸炒几十秒。;4.加入虾皮，冬瓜，白糖，生抽，老抽，蚝油。;5.翻炒均匀。;6.加半碗清水烧开。;7.盖小火炖五六分钟就可以。;8.蚝油冬瓜完成。");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(27,'鸡蛋炒鸡蛋','/public/food/17.jpg','川菜','咸鲜',2,5,"冬瓜,肉末.姜末,蒜末.","1.准备、冬瓜去皮洗净切片;2.锅中倒入适量油、下入肉末炒至变色;3.下入葱姜末炒香;4.下入冬瓜片炒均匀;5.掺入末过冬瓜的水;6.下入盐、煮至冬瓜熟透即可;7.咸香美味的冬瓜就做好啦。");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(28,'爆炒竹笋','/public/food/18.jpg','徽菜','清淡',7,5,"番茄,冬瓜,葱.油,盐,蔬之鲜,水.","1.所需食材准备就绪;2.冬瓜去皮切块;3.番茄改刀;4.葱切碎备用;5.锅中入油烧热倒入葱爆香;6.加入冬瓜;7.放入番茄加少许蔬之鲜调味;8.加水煮沸转小火煮炖十五分钟;9.加盐调味，入味关火;10.家常低脂菜，美味又健康;11.成品图");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(29,'酱油烧猪蹄','/public/food/19.jpg','川菜','咸香',1,5,"冬瓜.大葱,油,水.盐,酱油.蒜香","1.冬瓜去皮去籽，切条，大蒜一把。;2.热锅温油，蒜瓣炝锅。;3.冬瓜条入锅翻炒，加半杯水，盖盖子焖炖3分钟。;4.喜欢吃冬瓜原味的就加一点儿盐。;5.喜欢带着酱香味的可淋适量酱油。;6.翻拌均匀，出锅装盘，撒少许香葱粒。;7.蒜烧冬瓜条，清淡爽口又开胃！;");
+INSERT INTO dishes(dishes_id,dishes_name,dishes_pic,category_name,taste,category,score,Material,steps) VALUES(30,'土豆泥','/public/food/20.jpg','浙江菜','清淡',5,5,"冬瓜.大葱,油,水.盐,酱油.蒜香","1.冬瓜去皮去籽，切条，大蒜一把。;2.热锅温油，蒜瓣炝锅。;3.冬瓜条入锅翻炒，加半杯水，盖盖子焖炖3分钟。;4.喜欢吃冬瓜原味的就加一点儿盐。;5.喜欢带着酱香味的可淋适量酱油。;6.翻拌均匀，出锅装盘，撒少许香葱粒。;7.蒜烧冬瓜条，清淡爽口又开胃！;");
 
 
 
