@@ -457,8 +457,8 @@ server.post("/insertdishes", (req, res) => {
 server.get("/search", (req, res) => {
   let item = "%" + req.query.item + "%";
   let sql =
-    "SELECT * FROM dishes WHERE (category_name LIKE ? or dishes_name LIKE ?  or taste LIKE ? or score LIKE ?) ORDER BY RAND() LIMIT 20";
-  pool.query(sql, [item, item, item, item], (err, result) => {
+    "SELECT * FROM dishes WHERE (category_name LIKE ? or dishes_name LIKE ?  or taste LIKE ? or score LIKE ? or steps LIKE ? or Material LIKE ?) ORDER BY RAND() LIMIT 20";
+  pool.query(sql, [item, item, item, item, item, item], (err, result) => {
     if (err) throw err;
     console.log(result, sql);
     if (result.length == 0) {
