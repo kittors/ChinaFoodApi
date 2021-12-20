@@ -20,7 +20,9 @@ const uuid = require("uuid");
 
 //body-parser中间件 express的内置中间件可以用来解析JSON格式 二进制格式 文本格式 文本格式
 const bodyParser = require("body-parser");
-const { resourceLimits } = require("worker_threads");
+const {
+  resourceLimits
+} = require("worker_threads");
 const res = require("express/lib/response");
 
 // 创建MySQL连接池
@@ -241,16 +243,14 @@ server.post("/insertartile", (req, res) => {
     "INSERT author(title,articlePic,article_content,article_date,author_id) VALUES(?)";
   pool.query(
     sql,
-    [
-      {
-        title,
-        articlePic,
-        article_content,
-        article_date,
-        author_id,
-        author_name,
-      },
-    ],
+    [{
+      title,
+      articlePic,
+      article_content,
+      article_date,
+      author_id,
+      author_name,
+    }, ],
     (err, result) => {
       if (err) throw err;
       res.send({
@@ -378,12 +378,10 @@ server.post("/love", (req, res) => {
   let sql = "INSERT INTO follow SET ?";
   pool.query(
     sql,
-    [
-      {
-        user_id,
-        author_id,
-      },
-    ],
+    [{
+      user_id,
+      author_id,
+    }, ],
     (err, result) => {
       if (err) throw err;
       res.send({
@@ -628,12 +626,10 @@ server.post("/newFeedback", (req, res) => {
   let sql = "INSERT INTO feedback SET ?";
   pool.query(
     sql,
-    [
-      {
-        user_id,
-        details,
-      },
-    ],
+    [{
+      user_id,
+      details,
+    }, ],
     (err, result) => {
       if (err) throw err;
       res.send({
@@ -673,7 +669,7 @@ server.get("/searchFeedback", (req, res) => {
 server.get("/recommend", (req, res) => {
   let sql =
     "SELECT * FROM dishes WHERE score = 5 ORDER BY RAND() LIMIT 20";
-  pool.query(sql,(err, result) => {
+  pool.query(sql, (err, result) => {
     if (err) throw err;
     if (result.length == 0) {
       res.send({
@@ -686,5 +682,68 @@ server.get("/recommend", (req, res) => {
         result: result,
       });
     }
+  });
+});
+
+// 添加用户收藏接口
+server.post("/add_collection", (req, res) => {
+  let user_id = req.body.user_id;
+  let dishes_id = req.body.dishes_id;
+  let num = 0
+  let sql1 = "select * from dishes where dishes_id = ?"
+  let sql2 = "insert into collection set ?";
+  let sql3 = "select * from collection where user_id = ? "
+  pool.query(sql3, [user_id], (err, result) => {
+    if (err) throw err;
+    result.forEach(item => {
+      if(item.dishes_id == dishes_id){
+        num = 1
+      }
+    })
+    if(num){
+      res.send({
+      msg:"Same dishes exist",
+      code:'201'
+      })
+    }else{
+      pool.query(sql1, [dishes_id],(err, result) => {
+            if (err) throw err;
+            let data = JSON.stringify(result[0])
+            console.log(data)
+            pool.query(sql2, [{
+              dishes_id,
+              user_id,
+              data
+            }], (err, result) => {
+              if (err) throw err;
+              if (result.affectedRows == 1) {
+                res.send({
+                  msg: 'ok',
+                  code: 200,
+                })
+              } else {
+                res.send({
+                  msg: 'fail',
+                  code: 201,
+                })
+              }
+            })
+          }
+        );
+    }
+  })
+  })
+
+// 查询用户收藏的菜品信息 
+server.post("/query_user_collection", (req, res) => {
+  let user_id = req.body.user_id;
+  let sql = "select * from collection where  user_id = ?";
+  pool.query(sql, [user_id], (err, result) => {
+    if (err) throw err;
+    res.send({
+      msg: 'success',
+      code: 200,
+      result
+    })
   });
 });
