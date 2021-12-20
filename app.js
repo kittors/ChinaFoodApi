@@ -668,3 +668,23 @@ server.get("/searchFeedback", (req, res) => {
     });
   });
 });
+
+// 推荐页面接口  会将score分数等于5的筛选出来
+server.get("/recommend", (req, res) => {
+  let sql =
+    "SELECT * FROM dishes WHERE score = 5 ORDER BY RAND() LIMIT 20";
+  pool.query(sql,(err, result) => {
+    if (err) throw err;
+    if (result.length == 0) {
+      res.send({
+        code: 0,
+        msg: "查询无结果",
+      });
+    } else {
+      res.send({
+        code: 1,
+        result: result,
+      });
+    }
+  });
+});
